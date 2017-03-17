@@ -1,0 +1,3 @@
+可以将我的word笔记文件转换成markdown笔记的工具
+这是一个OSX下的脚本工具，需要在OSX上安装word，并且系统里有python
+
