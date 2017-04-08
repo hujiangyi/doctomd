@@ -30,7 +30,12 @@ echo "MOVING FROM HOME DIR TO TEMP DIR " ~/doc_to_html.html " -> " $TEMP/1_doc_t
 mv ~/doc_to_html.html $TEMP/1_doc_to_html.html
 mv ~/doc_to_html.files $TEMP/$FILENAME.files
 
-echo "GBK $TEMP/1_doc_to_html.html TO UTF-8 $TEMP/2_utf8_doc_to_html.html" 
-#iconv -c -f GBK -t UTF-8 $TEMP/1_doc_to_html.html >> $TEMP/2_utf8_doc_to_html.html 
-./gbktoutf8.sh $TEMP/1_doc_to_html.html $TEMP/2_utf8_doc_to_html.html >&2
-
+fileEncoding=`file $TEMP/1_doc_to_html.html | grep ISO-`
+if [ "$fileEncoding" != '' ]; then
+    echo "GBK $TEMP/1_doc_to_html.html TO UTF-8 $TEMP/2_utf8_doc_to_html.html" 
+    #iconv -c -f GBK -t UTF-8 $TEMP/1_doc_to_html.html >> $TEMP/2_utf8_doc_to_html.html 
+    ./gbktoutf8.sh $TEMP/1_doc_to_html.html $TEMP/2_utf8_doc_to_html.html >&2
+else 
+    echo "copy $TEMP/1_doc_to_html.html TO UTF-8 $TEMP/2_utf8_doc_to_html.htm    l"
+    cp $TEMP/1_doc_to_html.html $TEMP/2_utf8_doc_to_html.html
+fi
