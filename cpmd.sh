@@ -2,6 +2,9 @@
 FILENAME=$1
 SUBPATH=$2
 
+echo 'CPMD FILENAME ' $FILENAME
+echo 'CPMD SUBPATH ' $SUBPATH
+
 if [ -f ./md/$SUBPATH/$FILENAME.md ]; then
     rm ./md/$SUBPATH/$FILENAME.md >&2
 fi
@@ -12,5 +15,7 @@ fi
 mkdir -p md/$SUBPATH
 mv /tmp/$FILENAME/$FILENAME.md ./md/$SUBPATH
 mv /tmp/$FILENAME/$FILENAME.files ./md/$SUBPATH
-sed -ig 's/doc_to_html.files/'$FILENAME'.files/g' md/$SUBPATH/$FILENAME.md 
+sed -ig 's/doc_to_html.files/'$FILENAME'.files/g' md/$SUBPATH/$FILENAME.md
+
+echo 'end cpmd'
 
